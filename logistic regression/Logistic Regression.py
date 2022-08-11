@@ -18,7 +18,7 @@ sc_x = StandardScaler()
 x = sc_x.fit_transform(x)
 
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 1/8, random_state = 0)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 1/4, random_state = 0)
 
 # Building our classifier
 from sklearn.linear_model import LogisticRegression
@@ -26,12 +26,11 @@ classifier = LogisticRegression(random_state = 0)
 classifier.fit(x_train, y_train)
 
 # Predicting the results of our classifier
-y_pred = classifier.predict(x_train)
-y_pred1 = classifier.predict(x_test)
+y_pred = classifier.predict(x_test)
 
 # Creating our Confusion Matrix to evaluate model performance
 from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_true = y_train, y_pred = y_pred)
+cm = confusion_matrix(y_test, y_pred)
 
 # Calculating the accuracy and error rate from the confusion matrix
 def accuracy_rate():
